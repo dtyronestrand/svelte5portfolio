@@ -2,10 +2,14 @@
 	import type { Content } from '@prismicio/client';
 	import Scene from './Scene.svelte';
 	import { onMount } from 'svelte';
-	export let slice: Content.HeroSlice;
 	const first_name_letters = slice.primary.first_name ?.split("") ?? "";
 	const last_name_letters = slice.primary.last_name ?.split("") ?? "";
 	import gsap from 'gsap';
+	interface Props {
+		slice: Content.HeroSlice;
+	}
+
+	let { slice }: Props = $props();
 
 	onMount (() => {
 		const tl = gsap.timeline();

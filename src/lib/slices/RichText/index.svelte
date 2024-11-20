@@ -3,7 +3,11 @@
 	import { PrismicRichText } from '@prismicio/svelte';
 	import Label from './Label.svelte';
 
-	export let slice: Content.RichTextSlice;
+	interface Props {
+		slice: Content.RichTextSlice;
+	}
+
+	let { slice }: Props = $props();
 </script>
 
 <section class="container">

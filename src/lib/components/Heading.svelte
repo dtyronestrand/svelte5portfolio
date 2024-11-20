@@ -1,10 +1,20 @@
 <script lang="ts">
 	import clsx from 'clsx';
 
-	export let tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h1';
-	export let size: 'xl' | 'lg' | 'md' | 'sm' = 'lg';
-	let className: string = '';
-	export { className as class };
+	interface Props {
+		tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+		size?: 'xl' | 'lg' | 'md' | 'sm';
+		class?: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		tag = 'h1',
+		size = 'lg',
+		class: className = '',
+		children
+	}: Props = $props();
+	
 </script>
 
 <svelte:element
@@ -18,5 +28,5 @@
 		className
 	)}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

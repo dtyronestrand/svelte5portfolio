@@ -4,9 +4,13 @@
   import Button from '$lib/components/Button.svelte';
   import IconMenu from '~icons/ic/baseline-menu';
   import IconClose from '~icons/ic/baseline-close';
-    export let settings: Content.SettingsDocument;
+  interface Props {
+    settings: Content.SettingsDocument;
+  }
 
-    let open = false;
+  let { settings }: Props = $props();
+
+    let open = $state(false);
     function onLinkClick() {
         open = false;
     }
@@ -18,13 +22,13 @@
             <div class="flex justify-between items-center">
                 <a href="/" aria-label="homepage" class="text-xl font-extrabold tracking-tighter text-secondary-600">{settings.data.name}</a>
                 <button aria-expanded={open} aria-label="open menu"
-                on:click={() => (open = true)}
+                onclick={() => (open = true)}
                 class="block p-2 text-2xl text-primary-500 md:hidden"><IconMenu/></button>
             </div>
             <ul class={`fixed inset-0 z-50 flex flex-col items-end gap-4 bg-tertiary-50 pr-4 pt-14 transition-transform duration-300 ease-in-out md:hidden ${open ? 'translate-x-0' : 'translate-x-[100%]'}`}>
             <li>
                 <button aria-expanded={open} aria-label="open menu"
-                on:click={() => (open = false)}
+                onclick={() => (open = false)}
                 class="fixed right-4 top-3 block p-2 text-2xl text-primary-800 md:hidden"><IconClose/></button>
             </li>
             {#each settings.data.nav as {label, link}}

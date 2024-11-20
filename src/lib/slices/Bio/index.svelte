@@ -7,7 +7,11 @@
 	import Avatar from './Avatar.svelte';
 	
 
-	export let slice: Content.BioSlice;
+	interface Props {
+		slice: Content.BioSlice;
+	}
+
+	let { slice }: Props = $props();
 </script>
 
 <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>

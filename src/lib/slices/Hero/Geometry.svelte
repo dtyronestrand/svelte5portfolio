@@ -4,16 +4,20 @@
     import {Float, createTransition} from '@threlte/extras';
     import {gsap} from 'gsap';
 	import { elasticOut } from "svelte/easing";
-    export let position: [number, number, number] = [0, 0, 0];
-    export let geometry: THREE.BufferGeometry = new THREE.IcosahedronGeometry(3);
-    export let rate = 0.5;  
+  interface Props {
+    position?: [number, number, number];
+    geometry?: THREE.BufferGeometry;
+    rate?: number;
+  }
+
+  let { position = [0, 0, 0], geometry = new THREE.IcosahedronGeometry(3), rate = 0.5 }: Props = $props();
 
     const soundEffects = [
         new Audio('/sounds/hit1.ogg'),
         new Audio('/sounds/hit2.ogg'),
         new Audio('/sounds/hit3.ogg'),
 ]
-    let visible = false;
+    let visible = $state(false);
     
 
     const materialParams = [

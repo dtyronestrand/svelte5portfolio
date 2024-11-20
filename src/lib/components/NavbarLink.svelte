@@ -2,13 +2,22 @@
 	import { page } from '$app/stores';
     import {asLink, type KeyTextField, type LinkField} from '@prismicio/client';
 import {PrismicLink} from '@prismicio/svelte';
-    export let field: LinkField;
-    export let label: KeyTextField;
-    export let onLinkClick: (event:MouseEvent) => void;
-    export let type: "desktop" | "mobile";
+    interface Props {
+        field: LinkField;
+        label: KeyTextField;
+        onLinkClick: (event:MouseEvent) => void;
+        type: "desktop" | "mobile";
+    }
+
+    let {
+        field,
+        label,
+        onLinkClick,
+        type
+    }: Props = $props();
 
     const path = asLink(field) ;
-    $: isActive = path && $page.url.pathname.includes(path);
+    let isActive = $derived(path && $page.url.pathname.includes(path));
 </script>
 
 {#if type === "desktop"}

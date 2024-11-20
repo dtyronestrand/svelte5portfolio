@@ -2,9 +2,13 @@
 	import type { ImageField } from '@prismicio/client';
     import { PrismicImage} from '@prismicio/svelte';
     import clsx from 'clsx';
-    export let image: ImageField;
-    let className:string = "";
-    export {className as class};
+   interface Props {
+      image: ImageField;
+      class?: string;
+   }
+
+   let { image, class: className = "" }: Props = $props();
+    
     
 </script>
 

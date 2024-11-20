@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/stores';
 	import { repositoryName } from '$lib/prismicio';
@@ -7,7 +7,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
 
-	export let data;
+	let { data, children } = $props();
 </script>
 
 <svelte:head>
@@ -25,7 +25,7 @@
 </svelte:head>
 <Header settings={data.settings}/>
 <main>
-	<slot />
+	{@render children?.()}
 </main>
 <div class="background-gradient absolute inset-0 -z-40 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light"></div>
 <Footer settings={data.settings}/>

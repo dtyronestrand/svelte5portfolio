@@ -2,7 +2,11 @@
     import type { Content } from '@prismicio/client';
     import { PrismicLink } from '@prismicio/svelte';
     import Bounded from '$lib/components/Bounded.svelte';
-    export let settings: Content.SettingsDocument
+    interface Props {
+        settings: Content.SettingsDocument;
+    }
+
+    let { settings }: Props = $props();
 </script>
 
 <Bounded as='footer'  class="text-primary-600">
